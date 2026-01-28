@@ -7,9 +7,9 @@
     sg_id: "sg-032ba9da30e4b33fa"
     hosted_zone_id: "Z0971643FE7HKS61G2W9"
     instances:
-    - mongodb
-    - mysql
-    - redis
+      - mongodb
+      - mysql
+      - redis
   tasks:
   - name: create ec2
     amazon.aws.ec2_instance:
@@ -19,7 +19,7 @@
       image_id: "{{ ami_id }}"
       region: us-east-1
     register: ec2_output
-    loop: {{ instances }}
+    loop: "{{ instances }}"
 
   - name: echo ec2_output
     debug:
