@@ -9,6 +9,15 @@
     domain: "vijayaws.fun"
     instances:
       - mongodb
+      - redis
+      - rabbitmq
+      - mysql
+      - catalogue
+      - user
+      - cart
+      - shipping
+      - payment
+      - frontend
   tasks:
   - name: create ec2
     amazon.aws.ec2_instance:
@@ -24,12 +33,26 @@
     debug:
       msg: " {{ ec2_output }} "
   
-  - name: route53_update
+  - name: route53_update for backend and db
     amazon.aws.route53:
       state: present
       zone: "{{ domain }}"
-      record: "mongodb.{{ domain }}"
+      record: "{{ item }}.{{ domain }}"
       type: A
       ttl: 1
       overwrite: true
       value: "{{ ec2_output.results[0].instances[0].public_ip_address }}"
+    when: item != 'frontend'
+    loop: "{{ instances }}"
+      
+  - name: route53_update for frontend
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain }}"
+      record: "{{ item }}.{{ domain }}"
+      type: A
+      ttl: 1
+      overwrite: true
+      value: "{{ ec2_output.results[0].instances[0].private_ip_address }}"
+    when: item == 'frontend'
+    loop: "{{ instances }}"
