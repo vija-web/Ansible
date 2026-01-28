@@ -1,0 +1,19 @@
+- name: create an ec2 instance
+  host: local
+  connection: local
+  vars:
+    ami_id: "ami-0220d79f3f480ecf5"
+    sg_id: "sg-032ba9da30e4b33fa"
+    hosted_zone_id: "Z0971643FE7HKS61G2W9"
+  tasks:
+  - name: create ec2
+    amazon.aws.ec2_instance:
+      name: "mongodb"
+      instance_type: t3.micro
+      security_group: "{{ sg_id }}"
+      image_id: "{{ ami_id }}"
+    register: ec2_output
+
+  - name: echo ec2_output
+    degug:
+      msg: " {{ ec2_output }} "
