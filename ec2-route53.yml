@@ -6,10 +6,9 @@
     ami_id: "ami-0220d79f3f480ecf5"
     sg_id: "sg-032ba9da30e4b33fa"
     hosted_zone_id: "Z0971643FE7HKS61G2W9"
+    domain: "vijayaws.fun"
     instances:
       - mongodb
-      - mysql
-      - redis
   tasks:
   - name: create ec2
     amazon.aws.ec2_instance:
@@ -24,3 +23,12 @@
   - name: echo ec2_output
     debug:
       msg: " {{ ec2_output }} "
+  
+  - name: route53_update
+    amazon.aws.route53:
+      state: present
+      zone: "{{ hosted_zone_id }}"
+      record: "mongodb.{{ domain }}"
+      type: A
+      ttl: 1
+      value: "{{ ec2_output.results[0].instances[0].public_ip_address }}"
