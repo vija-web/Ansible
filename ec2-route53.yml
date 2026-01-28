@@ -27,7 +27,7 @@
   - name: route53_update
     amazon.aws.route53:
       state: present
-      zone: "{{ hosted_zone_id }}"
+      zone: "{{ domain }}"
       record: "mongodb.{{ domain }}"
       type: A
       ttl: 1
