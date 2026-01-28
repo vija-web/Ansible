@@ -41,7 +41,7 @@
       type: A
       ttl: 1
       overwrite: true
-      value: "{{ ec2_output.results[loop.index0].instances[0].public_ip_address }}"
+      value: "{{ ec2_output.results[ansible_loop.index0].instances[0].public_ip_address }}"
     when: item != 'frontend'
     loop: "{{ instances }}"
       
@@ -53,6 +53,6 @@
       type: A
       ttl: 1
       overwrite: true
-      value: "{{ ec2_output.results[loop.index0].instances[0].private_ip_address }}"
+      value: "{{ ec2_output.results[ansible_loop.index0].instances[0].private_ip_address }}"
     when: item == 'frontend'
     loop: "{{ instances }}"
