@@ -1,6 +1,7 @@
 - name: create an ec2 instance
   hosts: local
   connection: local
+  # when we have aws modules we should not write the become: true
   vars:
     ami_id: "ami-0220d79f3f480ecf5"
     sg_id: "sg-032ba9da30e4b33fa"
