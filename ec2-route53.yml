@@ -16,5 +16,5 @@
     register: ec2_output
 
   - name: echo ec2_output
-    degug:
+    debug:
       msg: " {{ ec2_output }} "
