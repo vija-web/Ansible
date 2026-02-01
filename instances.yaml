@@ -6,7 +6,7 @@
     sg_id: sg-032ba9da30e4b33fa # replace with your SG ID
     zone_id: "Z0971643FE7HKS61G2W9" # replace with your ID
     domain_name: "vijayaws.fun"
-    # we can pass instances through command line using -e
+    # we can pass instances through command line using -e "instances=mongodb"
     instances: 
     - mongodb
   tasks:
