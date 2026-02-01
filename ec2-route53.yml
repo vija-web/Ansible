@@ -33,7 +33,6 @@
       ttl: 1
       overwrite: true
       value: "{{ ec2_output.results[0].instances[0].public_ip_address }}"
-    when: item != 'frontend'
     loop: "{{ instances }}"
       
   - name: route53_update for frontend
