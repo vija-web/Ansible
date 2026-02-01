@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars:
-    ami_id: ami-09c813fb71547fc4f
+    ami_id: ami-0220d79f3f480ecf5
     sg_id: sg-032ba9da30e4b33fa # replace with your SG ID
     zone_id: "Z0971643FE7HKS61G2W9" # replace with your ID
     domain_name: "vijayaws.fun"
