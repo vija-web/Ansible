@@ -7,11 +7,8 @@
     zone_id: "Z0971643FE7HKS61G2W9" # replace with your ID
     domain_name: "vijayaws.fun"
     # we can pass instances through command line using -e
-    # instances: 
-    # - mongodb
-    # - redis
-    # - mysql
-    # - rabbitmq
+    instances: 
+    - mongodb
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
