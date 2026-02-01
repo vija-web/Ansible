@@ -9,6 +9,15 @@
     # we can pass instances through command line using -e "instances=mongodb"
     instances: 
     - mongodb
+    - redis
+    - mysql
+    - rabbitmq
+    - catalogue
+    - cart
+    - user
+    - payment
+    - shipping
+    - frontend
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
